@@ -1,0 +1,142 @@
+{% assign section_bg_color = section.settings.section_bg_color %}
+{% assign top_padding = section.settings.top_padding %}
+{% assign bottom_padding = section.settings.bottom_padding %}
+{% assign title = section.settings.section_title %}
+
+
+<section class="section {% if section.settings.wide_display == false %} is-width-standard {% else %} is-width-wide has-no-side-gutter {% endif %} section-{{ section.id }}">
+  <div class="container custom-section-judgeme-carousel">
+    <div class="one-whole column medium-down--one-whole">
+      <div class="heading-wrap">
+        {% if title != nil %}
+          <h3>{{ title }}</h3>
+        {% endif %}
+      </div>
+    </div>
+    
+<!-- Start of Judge.me code --> 
+  <div class='jdgm-carousel-wrapper'> 
+    {% assign jm_metafields = shop.metafields.judgeme %} 
+    <div class='jdgm-carousel-title-and-link'> 
+      <span class='jdgm-all-reviews-rating-wrapper' href='javascript:void(0)'> 
+        <span style='display:block' data-score='{{ jm_metafields.all_reviews_rating }}' class='jdgm-all-reviews-rating' aria-label='{{ jm_metafields.all_reviews_rating }} stars' tabindex='0' role='img'></span> 
+        <span style='display: block' class='jdgm-carousel-number-of-reviews' data-number-of-reviews='{{ jm_metafields.all_reviews_count }}'> 
+from {{ shop.metafields.judgeme.all_reviews_count }} reviews 
+        </span> 
+      </span> 
+    </div> 
+    {{ jm_metafields.featured_carousel }} 
+  </div> 
+<!-- End of Judge.me code -->
+    
+  </div>
+</section>
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    background-color: {{section_bg_color}};
+    padding-top: {{ top_padding }}%;
+    padding-bottom: {{ bottom_padding }}%;
+  }
+
+  #shopify-section-{{ section.id }} a.global-button, #shopify-section-{{ section.id }} button  {
+    max-height: 38px;
+    font-size: 16px;
+  }
+
+  #shopify-section-{{ section.id }} .heading-wrap {
+    margin-bottom: 20px;
+  }
+
+  #shopify-section-{{ section.id }} .heading-wrap h3 {
+    font-size: clamp(24px,3vw,36px);
+    color: #D5647C;
+    text-transform: initial;
+    text-align: center;
+    margin-bottom: 0px;
+  }
+
+  #shopify-section-{{ section.id }} .jdgm-carousel__item-wrapper {
+    height: auto;
+  }
+
+  #shopify-section-{{ section.id }} .jdgm-carousel-wrapper {
+    padding: 0px;
+  }
+
+  #shopify-section-{{ section.id }} .jdgm-carousel__right-arrow, #shopify-section-{{ section.id }} .jdgm-carousel__left-arrow {
+    border-width: 2px;
+    border-color: #222;
+    width: 10px;
+    height: 10px;
+  }
+
+  #shopify-section-{{ section.id }} .jdgm-carousel__arrows {
+    margin-top:20px;
+  }
+
+  @media only screen and (max-width:768px) {
+  
+    #shopify-section-{{ section.id }} {
+      padding-top: calc({{ top_padding }}% + 15px);
+      padding-bottom: calc({{ bottom_padding }}% + 15px);
+    }
+
+    #shopify-section-{{ section.id }} a.global-button, #shopify-section-{{ section.id }} button  {
+      max-height: 32px;
+      font-size: 14px;
+    }
+    
+  }
+{% endstyle %}
+
+{% schema %}
+  {
+    "name": "Custom Judgeme Carousel",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "wide_display",
+        "label": "Wide display",
+        "default": false
+      },
+      {
+        "type": "color",
+        "id": "section_bg_color",
+        "label": "Section Background Color",
+        "default": "#fff"
+      },
+      {
+        "type": "range",
+        "id": "top_padding",
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "unit": "%",
+        "label": "Top Padding",
+        "default": 3
+      },
+      {
+        "type": "range",
+        "id": "bottom_padding",
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "unit": "%",
+        "label": "Bottom Padding",
+        "default": 3
+      },
+      {
+        "type": "inline_richtext",
+        "id": "section_title",
+        "label": "Section Title"
+      },
+    ],
+    "presets": [
+      {
+      "name": "Custom Judgeme Carousel",
+      "category": "Custom",
+      }
+    ]
+  }
+{% endschema %}

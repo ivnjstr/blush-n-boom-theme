@@ -1,0 +1,124 @@
+<section class="section is-width-standard">
+  <div class="container">
+    <div class="one-whole column">
+      <div class="collection-section-header text-center is-flex is-flex-column is-justify-center is-align-center">
+        <h2 class="collection-title">{% if collection.title == "All Products" %}Shop All{% else %}{{ collection.title }}{% endif %}</h2>
+        <div class="collection-section-description">
+          {{ collection.description }}
+        </div>
+        <div class="collection-menu">
+          <div class="collection-nav">
+            {% for block in section.blocks %}
+              {% assign collection_title = block.settings.title %}
+              {% assign collection_url = block.settings.collection.url %}
+              <a href="{{ collection_url }}" class="collection-nav-item{% if request.path == collection_url %} active{% endif %}">
+                <span>{{ collection_title }}</span>
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% comment %}
+  <div class="container">
+    
+    <div class="one-half column medium-down--one-whole">
+    </div>
+  </div>
+  {% endcomment %}
+</section>
+
+{% style %}
+  .collection-section-header {
+    padding: 3rem 0px 0px;
+  }
+  
+  .collection-section-header .collection-title {
+    font-family: "BebasNeue";
+    color: #D5647C;
+    font-size: clamp(32px,4vw,64px);
+    font-weight: 400;
+    margin: 0px;
+    line-height: 1em;
+  }
+
+  .collection-section-header .collection-section-description {
+    font-size: clamp(15px,3vw,24px);
+  }
+
+  .collection-section-header .collection-nav {
+    padding: 4px 0px;
+    border: 1px solid #D9D9D9;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  .collection-section-header .collection-nav .collection-nav-item {
+    padding: 8px 10px;
+    margin: 0px 7px;
+  }
+
+  .collection-section-header .collection-nav .collection-nav-item.active {
+    background: #D5647C;
+    border-radius: 10px;
+  }
+
+  .collection-section-header .collection-nav .collection-nav-item span {
+    font-size: clamp(14px,3vw,16px);
+  }
+
+  .collection-section-header .collection-nav .collection-nav-item.active span {
+    color: #fff;
+  }
+
+  .collection-section-header .collection-menu {
+    
+  }
+
+
+  @media only screen and (max-width: 768px) {
+    .collection-section-header .collection-nav .collection-nav-item {
+      padding: 5px 7px;
+      margin: 0px 3px;
+    }
+  }
+
+      
+  
+{% endstyle %}
+
+{% schema %}
+  {
+    "name": "Collection Header",
+    "limit": 1,
+    "settings": [],
+    "blocks": [
+      {
+      "type": "menu",
+      "name": "Menu",
+      "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Collection Title",
+          },
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+          },
+        ]
+      }
+    ],
+    "presets": [
+      {
+      "name": "Collection Header",
+      "category": "Custom",
+      }
+    ]
+  }
+{% endschema %}

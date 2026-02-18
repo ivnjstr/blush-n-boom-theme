@@ -1,0 +1,198 @@
+<section class="top-collections {{ section.id }}">
+  <div class="container">
+    <h2 class="section-title">{{ section.settings.section_heading }}</h2>
+
+    <div class="collections-grid">
+      {% for block in section.blocks %}
+        <div class="collection-card">
+          <div 
+            class="image-button-container" 
+            style="{% if block.settings.image %}
+              background-image: url('{{ block.settings.image | image_url: width: 1200 }}');
+            {% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            
+
+            {% if block.settings.collection %}
+              <a href="{{ block.settings.collection.url }}" class="btn">
+                {{ block.settings.button_text }}
+              </a>
+            {% endif %}
+          </div>
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.description }}</p>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.browse_all_link %}
+      <div class="browse-all">
+        <a href="{{ section.settings.browse_all_link }}">
+          {{ section.settings.browse_all_text }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+.{{ section.id }} {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.{{ section.id }} .section-title {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
+.{{ section.id }} .collections-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.{{ section.id }} .collection-card {
+  justify-items: center;
+}
+
+.{{ section.id }} .image-button-container {
+  border-radius: 20px;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  transition: transform 0.3s ease;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 446px;
+  width: 349px;
+}
+
+
+.{{ section.id }} .collection-card:hover {
+  transform: translateY(-6px);
+}
+
+.{{ section.id }} .collection-card h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.{{ section.id }} .collection-card p {
+  font-size: 14px;
+  max-width: 260px;
+  margin-bottom: 20px;
+}
+
+.{{ section.id }} .btn {
+  background: #E45A74;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  display: inline-block;
+}
+
+.{{ section.id }} .image-wrapper img {
+  max-width: 160px;
+  height: auto;
+}
+
+.{{ section.id }} .browse-all {
+  margin-top: 40px;
+}
+
+.{{ section.id }} .browse-all a {
+  text-decoration: underline;
+  font-weight: 500;
+  color: #333;
+}
+
+@media (max-width: 900px) {
+  .{{ section.id }} .collections-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+
+
+
+
+{% schema %}
+{
+  "name": "Custom Collections",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Section Heading",
+      "default": "Top Collections"
+    },
+    {
+      "type": "url",
+      "id": "browse_all_link",
+      "label": "Browse All Products Link"
+    },
+    {
+      "type": "text",
+      "id": "browse_all_text",
+      "label": "Browse All Text",
+      "default": "Browse All Products"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_card",
+      "name": "Collection Card",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select Collection"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Custom Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Shop Now"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Custom Image"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background Color",
+          "default": "#F8EDED"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Custom Collections"
+    }
+  ]
+}
+{% endschema %}

@@ -15,14 +15,21 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Browse our latest products",
+            "heading": "BLOOM WITH NATURAL COLOR",
             "heading_size": "h0"
+          }
+        },
+        "text_MdMckA": {
+          "type": "text",
+          "settings": {
+            "text": "Experience the magic of Blush n Bloom, crafted with floral essences for radiant healthy glow.",
+            "text_style": "body"
           }
         },
         "button": {
           "type": "buttons",
           "settings": {
-            "button_label_1": "Shop all",
+            "button_label_1": "SHOP THE COLLECTION",
             "button_link_1": "shopify://collections/all",
             "button_style_secondary_1": true,
             "button_label_2": "",
@@ -33,52 +40,89 @@
       },
       "block_order": [
         "heading",
+        "text_MdMckA",
         "button"
       ],
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
+        "image": "shopify://shop_images/image_66.webp",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
         "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
+        "desktop_content_position": "middle-left",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "scheme-78806233-94ea-4645-8408-8a9647b6f4be",
         "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
         "show_text_below": false
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "custom_image_text_split_jAXxD9": {
+      "type": "custom-image-text-split",
+      "name": "Image + Text Split",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "image": "shopify://shop_images/ezgif.com-animated-gif-maker.gif",
+        "heading": "Unlock Your Natural Blush",
+        "heading_color": "#6dbe45",
+        "description": "Everything you need for a healthy and radiant glow.",
+        "button_text": "Shop Now",
+        "button_link": "shopify://collections/all",
+        "reverse_layout": false
+      }
+    },
+    "custom_top_collections_RMdNjE": {
+      "type": "custom-top-collections",
+      "blocks": {
+        "collection_card_hXk6mb": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "face",
+            "title": "",
+            "description": "Enhance your complexion with flawless foundations, radiant blushes, and perfecting primers for a natural, luminous glow.",
+            "button_text": "SHOP FACE",
+            "image": "shopify://shop_images/Rectangle_42.png",
+            "background_color": "#f8eded"
+          }
+        },
+        "collection_card_8dwDU4": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "eyes",
+            "title": "",
+            "description": "Elevate your look with essential mascaras, versatile palettes, and precision liners for effortless definition and drama.",
+            "button_text": "SHOP EYES",
+            "image": "shopify://shop_images/Rectangle_43.png",
+            "background_color": "#f8eded"
+          }
+        },
+        "collection_card_tFaB3x": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "lips",
+            "title": "",
+            "description": "Discover your perfect pout with hydrating, long-lasting stains and radiant glosses.",
+            "button_text": "SHOP LIPS",
+            "image": "shopify://shop_images/Rectangle_44.png",
+            "background_color": "#f8eded"
+          }
+        }
+      },
+      "block_order": [
+        "collection_card_hXk6mb",
+        "collection_card_8dwDU4",
+        "collection_card_tFaB3x"
+      ],
+      "name": "Custom Collections",
+      "settings": {
+        "section_heading": "Top Collections",
+        "browse_all_link": "",
+        "browse_all_text": "Browse All Products"
       }
     }
   },
   "order": [
     "image_banner",
-    "featured_collection"
+    "custom_image_text_split_jAXxD9",
+    "custom_top_collections_RMdNjE"
   ]
 }

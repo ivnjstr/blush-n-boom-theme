@@ -1,0 +1,147 @@
+{% schema %}
+{
+  "name": "Custom Collection Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "SHOP ALL"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Explore products designed to enhance and nourish with every use."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_block",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select Collection"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Button Label"
+        }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Custom Collection Grid" }]
+}
+{% endschema %}
+
+<section class="custom-grid-section {{ section.id }}">
+  <div class="section-header">
+    <h2 class="main-title">{{ section.settings.title }}</h2>
+    {% if section.settings.subheading != blank %}
+      <p class="main-subheading">{{ section.settings.subheading }}</p>
+    {% endif %}
+  </div>
+  
+  <div class="filter-tabs">
+    {% for block in section.blocks %}
+      <button class="tab-btn {% if forloop.first %}active{% endif %}" data-id="grid-{{ block.id }}">
+        {{ block.settings.label | default: block.settings.collection.title }}
+      </button>
+    {% endfor %}
+  </div>
+
+  <div class="grids-container">
+    {% for block in section.blocks %}
+      <div class="product-grid {% if forloop.first %}active{% endif %}" id="grid-{{ block.id }}">
+        {% for product in block.settings.collection.products limit: 12 %}
+          <div class="product-card">
+            <div class="img-box">
+              <img src="{{ product.featured_image | img_url: '600x' }}" alt="{{ product.title }}">
+            </div>
+            <div class="info-box">
+              <h3 class="p-title">{{ product.title }}</h3>
+              <p class="p-subtitle">{{ product.type }}</p>
+              <p class="p-price">{{ product.price | money_without_trailing_zeros }}</p>
+            </div>
+            
+            <div class="action-box">
+              <form method="post" action="/cart/add">
+                <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+                <input type="hidden" name="return_to" value="/cart" />
+                <button type="submit" class="btn-atc">ADD TO CART</button>
+              </form>
+              <a href="/checkout" class="btn-buy">BUY NOW</a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+
+<style>
+#shopify-section-{{ section.id }}{display: flex; align-items: center; justify-content: center;}
+.custom-grid-section { padding: 0px 0px; text-align: center; background: #fff; font-family: sans-serif; max-width: 1200px; }
+.section-header { margin-bottom: 30px; }
+.main-title { color: #81C362; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; font-weight: 800; }
+.main-subheading { color: #666; font-size: 16px; margin: 0; }
+
+.filter-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
+.tab-btn { padding: 8px 20px; border: 1px solid #ddd; background: #fff; cursor: pointer; border-radius: 4px; transition: 0.3s; }
+.tab-btn.active { background: #d88a8a; color: #fff; border-color: #d88a8a; }
+
+.product-grid { display: none; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+.product-grid.active { display: grid; }
+
+.product-card { background: #fff; padding: 10px; display: flex; flex-direction: column; }
+.img-box { border: 2px solid #34a8eb; margin-bottom: 15px; line-height: 0; }
+.img-box img { width: 100%; height: auto; }
+
+.info-box { margin-bottom: 15px; text-align: center; }
+.p-title { font-size: 16px; font-weight: bold; margin: 0; color: #000; }
+.p-subtitle { font-size: 14px; color: #666; margin: 2px 0; line-height: normal; }
+.p-price { font-size: 15px; font-weight: 600; margin: 5px 0px; color: #000;}
+
+.action-box { display: flex; flex-direction: column; gap: 8px; }
+.btn-atc, .btn-buy { 
+  display: block; width: 100%; padding: 12px 0; border: none; 
+  font-weight: bold; text-transform: uppercase; cursor: pointer; 
+  text-decoration: none; font-size: 13px; text-align: center;
+  line-height: normal;
+}
+.btn-atc { background: #fde2e4; color: #000; } 
+.btn-buy { background: #ffb3ba; color: #000; }
+
+@media (max-width: 1024px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 740px){
+    .product-grid {
+        gap: 0px;
+        padding: 0px 10px;
+    }
+
+}
+</style>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const tabs = document.querySelectorAll('.tab-btn');
+  const grids = document.querySelectorAll('.product-grid');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      grids.forEach(g => g.classList.remove('active'));
+      
+      tab.classList.add('active');
+      const target = tab.getAttribute('data-id');
+      const targetGrid = document.getElementById(target);
+      if(targetGrid) targetGrid.classList.add('active');
+    });
+  });
+});
+</script>

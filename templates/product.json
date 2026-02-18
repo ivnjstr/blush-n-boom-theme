@@ -99,10 +99,22 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
+    },
+    "custom_judgeme_carousel_7i6V9U": {
+      "type": "custom-judgeme-carousel",
+      "name": "Custom Judgeme Carousel",
+      "settings": {
+        "wide_display": false,
+        "section_bg_color": "#fff",
+        "top_padding": 3,
+        "bottom_padding": 3,
+        "section_title": "Reviews"
+      }
     }
   },
   "order": [
     "main",
-    "related-products"
+    "related-products",
+    "custom_judgeme_carousel_7i6V9U"
   ]
 }

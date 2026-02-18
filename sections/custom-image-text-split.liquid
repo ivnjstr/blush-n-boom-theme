@@ -1,0 +1,157 @@
+<section class="split-section {{ section.id }}">
+  <div class="container {% if section.settings.reverse_layout %}reverse{% endif %}">
+    
+    <div class="split-image">
+      {% if section.settings.image %}
+        <img 
+          src="{{ section.settings.image | image_url: width: 1000 }}" 
+          alt="{{ section.settings.heading }}"
+          loading="lazy"
+        >
+      {% endif %}
+    </div>
+
+    <div class="split-content">
+      <h2 style="color: {{ section.settings.heading_color }};">
+        {{ section.settings.heading }}
+      </h2>
+
+      <p>{{ section.settings.description }}</p>
+
+      {% if section.settings.button_link %}
+        <a href="{{ section.settings.button_link }}" class="split-btn">
+          {{ section.settings.button_text }}
+        </a>
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+
+<style>
+.{{ section.id }} .split-section {
+  padding: 80px 20px;
+}
+
+.{{ section.id }} .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.{{ section.id }} .container.reverse {
+  flex-direction: row-reverse;
+}
+
+.{{ section.id }} .split-image {
+  flex: 1;
+}
+
+.{{ section.id }} .split-image img {
+  width: 100%;
+  border-radius: 6px;
+  display: block;
+}
+
+.{{ section.id }} .split-content {
+  flex: 1;
+}
+
+.{{ section.id }} .split-content h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.{{ section.id }} .split-content p {
+  font-size: 16px;
+  margin-bottom: 25px;
+  max-width: 400px;
+}
+
+.{{ section.id }} .split-btn {
+  display: inline-block;
+  background: #C76C77;
+  color: white;
+  padding: 12px 22px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 4px;
+  transition: opacity 0.3s ease;
+}
+
+.{{ section.id }} .split-btn:hover {
+  opacity: 0.85;
+}
+
+@media (max-width: 900px) {
+  .{{ section.id }} .split-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .{{ section.id }} .split-content p {
+    margin: 0 auto 25px;
+  }
+}
+</style>
+
+
+
+
+{% schema %}
+{
+  "name": "Image + Text Split",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Left Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Unlock Your Natural Blush"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#6DBE45"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Everything you need for a healthy and radiant glow."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "reverse_layout",
+      "label": "Reverse Layout (Image Right)",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image + Text Split"
+    }
+  ]
+}
+{% endschema %}

@@ -11,6 +11,7 @@
   "sections": {
     "main": {
       "type": "main-list-collections",
+      "disabled": true,
       "settings": {
         "title": "Collections",
         "sort": "alphabetical",
@@ -18,9 +19,30 @@
         "columns_desktop": 3,
         "columns_mobile": "2"
       }
+    },
+    "custom_collection_AiRVMp": {
+      "type": "custom-collection",
+      "blocks": {
+        "collection_block_UdPfP6": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "test",
+            "label": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_block_UdPfP6"
+      ],
+      "name": "Custom Collection Grid",
+      "settings": {
+        "title": "OUR COLLECTION",
+        "subheading": "A touch of radiance, a swipe of confidence."
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "custom_collection_AiRVMp"
   ]
 }

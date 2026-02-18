@@ -11,13 +11,32 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "custom_presell_page_WJntyk": {
+      "type": "custom-presell-page",
+      "name": "2298 Presell Page",
+      "settings": {
+        "sidebar_position": "right",
+        "container_width": 1200,
+        "gap": 40,
+        "sidebar_sticky": true,
+        "sticky_offset": 20,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "padding_top_mobile": 32,
+        "padding_bottom_mobile": 32,
+        "background_color": "",
+        "css_class": ""
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "custom_presell_page_WJntyk"
   ]
 }
