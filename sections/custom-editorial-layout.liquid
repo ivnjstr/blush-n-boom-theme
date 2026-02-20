@@ -1,0 +1,280 @@
+<div class="editorial-container section-{{ section.id }}">
+  <div class="editorial-grid">
+    
+    <article class="editorial-main">
+      <header class="editorial-header">
+        <h1 class="editorial-title">{{ section.settings.title }}</h1>
+        <div class="editorial-meta">
+          <span class="meta-icon"></span>
+          <time>{{ section.settings.date }}</time>
+        </div>
+      </header>
+
+      {% if section.settings.hero_image %}
+        <div class="editorial-hero">
+          {{ section.settings.hero_image | image_url: width: 1200 | image_tag: loading: 'lazy' }}
+        </div>
+      {% endif %}
+
+      <div class="editorial-content">
+      {{ section.settings.intro_text }}
+      
+      {% for block in section.blocks %}
+        
+        {% comment %} 1. ORIGINAL CONTENT STEPS {% endcomment %}
+        {% if block.type == 'content_step' %}
+          <div class="content-step">
+            <div class="step-text {% if block.settings.reverse %}reverse{% endif %}">
+              <div class="text-wrap">
+                <h2 class="step-title">{{ block.settings.step_number }}. {{ block.settings.heading }}</h2>
+                <div class="step-description">{{ block.settings.text }}</div>
+              </div>
+              {% if block.settings.image %}
+                <div class="step-image">
+                  {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy' }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+
+        {% comment %} 2. NEW CTA BANNER (Unleash Your Inner Glow) {% endcomment %}
+        {% elsif block.type == 'cta_banner' %}
+          <div class="editorial-cta" style="background-color: {{ block.settings.bg_color }};">
+            <div class="cta-inner">
+              <h2 class="cta-heading">{{ block.settings.heading }}</h2>
+              <div class="cta-text">{{ block.settings.text }}</div>
+              <a href="{{ block.settings.link }}" class="cta-button">{{ block.settings.button_label }}</a>
+            </div>
+          </div>
+
+        {% comment %} 3. NEW FEATURE LIST (What Makes Us Different) {% endcomment %}
+        {% elsif block.type == 'feature_list' %}
+          <div class="editorial-features">
+            <h2 class="features-heading">{{ block.settings.heading }}</h2>
+            <div class="features-list-wrapper">
+              {{ block.settings.list_items }}
+            </div>
+          </div>
+          
+        {% endif %}
+      {% endfor %}
+    </div>
+    </article>
+
+    <aside class="editorial-sidebar">
+      <h3 class="sidebar-title">WHAT THEY SAY</h3>
+      
+      {% for block in section.blocks %}
+        {% if block.type == 'testimonial' %}
+          <div class="sidebar-testimonial">
+            <div class="testimonial-header">
+              <strong>{{ block.settings.author }}</strong>
+              <span class="stars">★★★★★</span>
+            </div>
+            <p class="testimonial-text"><em>{{ block.settings.quote }}</em></p>
+          </div>
+        {% elsif block.type == 'product_card' %}
+          <div class="sidebar-product">
+            <div class="product-card-inner">
+               {% if block.settings.image %}
+                {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy' }}
+               {% endif %}
+               <div class="product-info">
+                 <h4 class="product-name">{{ block.settings.product_title }}</h4>
+                 <p>{{ block.settings.product_desc }}</p>
+                 <a href="{{ block.settings.link }}" class="product-btn">SHOP THE COLLECTION</a>
+               </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </aside>
+  </div>
+</div>
+
+<style>
+  .editorial-container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; font-family: 'Helvetica', sans-serif; }
+  
+  /* FIXED: Added align-items: start to allow sticky behavior */
+  .editorial-grid { 
+    display: grid; 
+    grid-template-columns: 2fr 1fr; 
+    gap: 60px; 
+    align-items: start; 
+  }
+  
+  /* Main Content */
+  .editorial-main { min-width: 0; } /* Prevents grid blowout from large images */
+  .editorial-title { line-height: 1.2; margin-bottom: 15px; font-size: 2.5rem; }
+  .editorial-meta { margin-bottom: 30px; color: #666; }
+  .editorial-hero img { width: 100%; height: auto; display: block; border-radius: 4px; }
+  .editorial-content { margin-top: 30px; line-height: 1.6; color: #333; }
+  
+  .content-step { margin: 40px 0; }
+  .step-text { display: flex; align-items: flex-start; gap: 30px; }
+  .step-text.reverse { flex-direction: row-reverse; }
+  .step-title { color: #8cb88c; margin-top: 0; }
+  .step-image img { width: 300px; height: auto; border-radius: 4px; }
+
+  /* BASE STICKY SIDEBAR */
+  .editorial-sidebar { 
+    position: -webkit-sticky; 
+    position: sticky; 
+    top: 20px; /* Default top when scrolling down */
+    height: fit-content;
+    transition: top 0.3s ease; /* Smooth transition when top changes */
+    {% comment %} z-index: 10; {% endcomment %}
+  }
+
+  /* NEW: Top position when user is scrolling up */
+  .editorial-sidebar.is-scrolling-up {
+    top: 120px;
+  }
+
+  .sidebar-title { border-bottom: 1px solid #ddd; padding-bottom: 10px; letter-spacing: 1px; font-size: 0.9rem; }
+  .sidebar-testimonial { margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+  .testimonial-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
+  .stars { color: #8cb88c; }
+  
+  .sidebar-product { border: 1px solid #eee; padding: 15px; text-align: center; background: #fff; }
+  .product-name { color: #8cb88c; text-transform: uppercase; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px; text-decoration: underline;}
+  .product-btn { display: block; background: #fce1e4; color: #000; text-decoration: none; padding: 12px; font-weight: bold; margin-top: 15px; transition: opacity 0.2s; }
+  .product-btn:hover { opacity: 0.8; }
+
+  /* CTA & Features */
+  .editorial-cta { padding: 60px 40px; text-align: center; margin: 40px 0; border-radius: 4px; }
+  .cta-button { display: inline-block; background: #fce1e4; color: #000; padding: 15px 40px; text-decoration: none; font-weight: bold; }
+
+  /* MOBILE RESPONSIVENESS */
+  /* MOBILE RESPONSIVENESS */
+  @media (max-width: 990px) {
+    .editorial-grid { 
+      grid-template-columns: 1fr; 
+      gap: 40px; 
+    }
+    
+    .editorial-sidebar { 
+      position: static !important; /* Force static on mobile */
+      order: 2; 
+    }
+
+    
+    .step-text { 
+      flex-direction: column !important; 
+      gap: 20px;
+    }
+    
+    .step-image, .step-image img { 
+      width: 100% !important; 
+    }
+    .editorial-container{
+      padding: 0px;
+    }
+    .editorial-main{
+      padding: 20px;
+    }
+    .sidebar-testimonial, .sidebar-title{
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Editorial Blog Layout",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Main Title", "default": "5 Reasons Blush On Is Becoming Everyone's Everyday Beauty Essential" },
+    { "type": "text", "id": "date", "label": "Date", "default": "February 17, 2026" },
+    { "type": "image_picker", "id": "hero_image", "label": "Main Hero Image" },
+    { "type": "richtext", "id": "intro_text", "label": "Intro Paragraph" }
+  ],
+  "blocks": [
+    {
+      "type": "content_step",
+      "name": "Article Section",
+      "settings": [
+        { "type": "text", "id": "step_number", "label": "Step Number", "default": "1" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Instantly Makes the Face Look Fresh" },
+        { "type": "richtext", "id": "text", "label": "Description" },
+        { "type": "image_picker", "id": "image", "label": "Side Image" },
+        { "type": "checkbox", "id": "reverse", "label": "Image on Left", "default": false }
+      ]
+    },
+    {
+      "type": "testimonial",
+      "name": "Sidebar Testimonial",
+      "settings": [
+        { "type": "text", "id": "author", "label": "Author Name" },
+        { "type": "textarea", "id": "quote", "label": "Quote" }
+      ]
+    },
+    {
+      "type": "product_card",
+      "name": "Sidebar Product Card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Product Image" },
+        { "type": "text", "id": "product_title", "label": "Product Title" },
+        { "type": "text", "id": "product_desc", "label": "Product Description" },
+        { "type": "url", "id": "link", "label": "Button Link" }
+      ]
+    },
+    {
+      "type": "cta_banner",
+      "name": "CTA Banner",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Unleash Your Inner Glow" },
+        { "type": "richtext", "id": "text", "label": "Text Content" },
+        { "type": "text", "id": "button_label", "label": "Button Label", "default": "SHOP THE BLOOM COLLECTION" },
+        { "type": "url", "id": "link", "label": "Button Link" },
+        { "type": "color", "id": "bg_color", "label": "Background Color", "default": "#e6f0e0" }
+      ]
+    },
+    {
+      "type": "feature_list",
+      "name": "Feature List",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "What Makes Blush and Bloom Different?" },
+        { "type": "richtext", "id": "list_items", "label": "List (Use Bullet Points)", "default": "<p>Focuses on enhancing natural beauty</p><p>Soft, feminine aesthetic</p>" }
+      ]
+    }
+      ],
+  "presets": [
+    {
+      "name": "Editorial Blog Layout",
+      "blocks": [
+        { "type": "content_step" },
+        { "type": "testimonial" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.querySelector('.editorial-sidebar');
+    if (!sidebar) return;
+
+    let lastScrollTop = 0;
+
+    window.addEventListener('scroll', function() {
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      // If mobile, don't bother with the logic
+      if (window.innerWidth <= 990) return;
+
+      if (scrollTop < lastScrollTop) {
+        // SCROLLING UP
+        sidebar.classList.add('is-scrolling-up');
+      } else {
+        // SCROLLING DOWN
+        sidebar.classList.remove('is-scrolling-up');
+      }
+      
+      // Prevent negative values from bounce effects
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
+    }, { passive: true });
+  });
+</script>

@@ -19,6 +19,7 @@
     },
     "custom_presell_page_WJntyk": {
       "type": "custom-presell-page",
+      "disabled": true,
       "name": "2298 Presell Page",
       "settings": {
         "sidebar_position": "right",
@@ -33,10 +34,158 @@
         "background_color": "",
         "css_class": ""
       }
+    },
+    "custom_editorial_layout_9VtQqD": {
+      "type": "custom-editorial-layout",
+      "blocks": {
+        "testimonial_X48RWG": {
+          "type": "testimonial",
+          "settings": {
+            "author": "Angela M.",
+            "quote": "I love how smooth this blush applies. The color looks very natural on my skin and lasts for hours without looking patchy. Perfect for everyday makeup."
+          }
+        },
+        "testimonial_pThQBi": {
+          "type": "testimonial",
+          "settings": {
+            "author": "Jasmine P.",
+            "quote": "The lipstick feels very comfortable on the lips and doesn’t dry them out. The color stays on for hours and fades evenly. I love the smooth finish."
+          }
+        },
+        "product_card_6jbRN8": {
+          "type": "product_card",
+          "settings": {
+            "image": "shopify://shop_images/image_42.png",
+            "product_title": "BLUSH N BLOOM BLUSHING BLOOM SIGNATURE BLUSH",
+            "product_desc": "Achieve a Natural, Healthy Flush with Floral Extracts",
+            "link": "shopify://collections/all"
+          }
+        },
+        "content_step_p78DBW": {
+          "type": "content_step",
+          "settings": {
+            "step_number": "1",
+            "heading": "Instantly Makes the Face Look Fresh and Alive",
+            "text": "<p>A touch of blush instantly brings color back to the skin. Even with minimal makeup, blush creates a healthy, youthful appearance by mimicking a natural flush. It helps the face look more awake and vibrant without needing heavy contour or bronzer.</p>",
+            "image": "shopify://shop_images/image_36.png",
+            "reverse": false
+          }
+        },
+        "content_step_t9CaQU": {
+          "type": "content_step",
+          "settings": {
+            "step_number": "2",
+            "heading": "Perfect for Natural, Everyday Makeup",
+            "text": "<p>The beauty trend today leans toward soft, natural finishes rather than heavy makeup. Blush fits perfectly into this style because it enhances your natural features instead of covering them. A light sweep on the cheeks can complete an entire look in seconds.</p>",
+            "image": "shopify://shop_images/image_37.png",
+            "reverse": true
+          }
+        },
+        "content_step_wJNPty": {
+          "type": "content_step",
+          "settings": {
+            "step_number": "3",
+            "heading": "Multi-Use and Beginner-Friendly",
+            "text": "<p>Blush on is one of the easiest products to use. It can be applied on the cheeks, eyelids, and even lightly on the nose for a cohesive, sun-kissed effect. This versatility makes it ideal for beginners or anyone who wants a quick, effortless routine.</p>",
+            "image": "shopify://shop_images/image_38.png",
+            "reverse": false
+          }
+        },
+        "content_step_6etgCc": {
+          "type": "content_step",
+          "settings": {
+            "step_number": "4",
+            "heading": "Works for Every Skin Type and Makeup Style",
+            "text": "<p>Whether you prefer matte, dewy, cream, or powder formulas, there’s a blush for everyone. From soft everyday looks to bold evening makeup, blush adapts easily and enhances other products instead of competing with them.</p>",
+            "image": "shopify://shop_images/image_39.png",
+            "reverse": true
+          }
+        },
+        "content_step_RhArXe": {
+          "type": "content_step",
+          "settings": {
+            "step_number": "5",
+            "heading": "The Fastest Way to Upgrade Any Look",
+            "text": "<p>Even when makeup feels incomplete, adding blush instantly pulls everything together. It balances foundation, adds dimension, and gives the face a polished finish — making it one of the quickest ways to elevate your overall look.</p>",
+            "image": "shopify://shop_images/image_40.png",
+            "reverse": false
+          }
+        },
+        "cta_banner_WQcDr3": {
+          "type": "cta_banner",
+          "settings": {
+            "heading": "Unleash Your Inner Glow",
+            "text": "<p>Experience the beauty of Blush n Bloom — crafted with floral-inspired formulas that leave your skin fresh, radiant, and naturally blooming with color. Try Blush n Bloom today.</p>",
+            "button_label": "SHOP THE BLOOM COLLECTION",
+            "link": "",
+            "bg_color": "#e6f0e0"
+          }
+        },
+        "feature_list_eGFAwj": {
+          "type": "feature_list",
+          "settings": {
+            "heading": "What Makes Blush and Bloom Different from Every Other Beauty Brand?",
+            "list_items": "<ul><li>Focuses on enhancing natural beauty instead of heavy coverage</li><li>Soft, feminine, and modern aesthetic across all products</li><li>Designed for everyday wear — quick, easy, and beginner-friendly</li><li>Multi-use products that simplify beauty routines</li><li>Lightweight, comfortable formulas suitable for daily use</li><li>Trend-inspired but timeless shades</li><li>Encourages confidence through simple and effortless beauty</li><li>Created for real-life routines, not just full glam looks</li></ul>"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_X48RWG",
+        "testimonial_pThQBi",
+        "product_card_6jbRN8",
+        "content_step_p78DBW",
+        "content_step_t9CaQU",
+        "content_step_wJNPty",
+        "content_step_6etgCc",
+        "content_step_RhArXe",
+        "cta_banner_WQcDr3",
+        "feature_list_eGFAwj"
+      ],
+      "name": "Editorial Blog Layout",
+      "settings": {
+        "title": "5 Reasons Blush On Is Becoming Everyone’s Everyday Beauty Essential",
+        "date": "February 17, 2026",
+        "hero_image": "shopify://shop_images/image_41.png",
+        "intro_text": "<p>Blush on is no longer just an optional makeup step — it has become one of the most important products in modern beauty routines. From natural everyday looks to full glam transformations, blush adds life, warmth, and freshness to the face in seconds. <br/><br/>Here’s why blush on is quickly becoming a must-have in every makeup kit, especially for brands like Blush n Bloom that focus on soft, wearable beauty.</p>"
+      }
+    },
+    "custom_testimonial_cards_dCDknE": {
+      "type": "custom-testimonial-cards",
+      "blocks": {
+        "testimonial_6WRRMH": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Natural Glow Every Day",
+            "image": "shopify://shop_images/image_20.png",
+            "author": "Angela M.",
+            "email": "angela.m@email.com",
+            "date": "February 05, 2026",
+            "quote": "I love how smooth this blush applies. The color looks very natural on my skin and lasts for hours without looking patchy. Perfect for everyday makeup."
+          }
+        },
+        "testimonial_FRHLEi": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Natural Glow Every Day",
+            "author": "Angela M.",
+            "email": "angela.m@email.com",
+            "date": "February 05, 2026",
+            "quote": ""
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_6WRRMH",
+        "testimonial_FRHLEi"
+      ],
+      "name": "Testimonial Card List",
+      "settings": {}
     }
   },
   "order": [
     "main",
-    "custom_presell_page_WJntyk"
+    "custom_presell_page_WJntyk",
+    "custom_editorial_layout_9VtQqD",
+    "custom_testimonial_cards_dCDknE"
   ]
 }

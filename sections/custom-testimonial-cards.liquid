@@ -1,0 +1,172 @@
+<div class="testimonial-section-wrapper">
+  {% for block in section.blocks %}
+    <div class="testimonial-group">
+      <h3 class="testimonial-header-title">"{{ block.settings.title }}"</h3>
+      
+      <div class="testimonial-card">
+        <div class="testimonial-inner">
+          <div class="testimonial-image">
+            {% if block.settings.image %}
+              {{ block.settings.image | image_url: width: 300 | image_tag: loading: 'lazy' }}
+            {% endif %}
+          </div>
+          
+          <div class="testimonial-info">
+            <div class="info-top">
+              <div class="author-details">
+                <span class="author-name">{{ block.settings.author }}</span>
+                <span class="author-email">{{ block.settings.email }}</span>
+              </div>
+              <span class="testimonial-date">{{ block.settings.date }}</span>
+            </div>
+            
+            <p class="testimonial-quote"><em>{{ block.settings.quote }}</em></p>
+            
+            <div class="testimonial-stars">
+              {% for i in (1..5) %}★{% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<style>
+  .testimonial-section-wrapper { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+  .testimonial-group { margin-bottom: 30px; }
+  
+  .testimonial-header-title { 
+    font-weight: bold; 
+    margin-bottom: 12px; 
+    font-family: inherit;
+  }
+
+  .testimonial-card {
+    background-color: #fce1e4; 
+    padding: 24px;
+    border-radius: 8px;
+  }
+
+  .testimonial-inner { display: flex; gap: 20px; align-items: flex-start; }
+  
+  .testimonial-image img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    border-radius: 4px;
+  }
+
+  .testimonial-info { flex: 1; }
+  
+  .info-top { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-start;
+    margin-bottom: 15px;
+  }
+
+  .author-name { display: block; font-weight: bold; }
+  .author-email { display: block; font-size: 0.9rem; text-decoration: underline; color: #555; }
+  .testimonial-date { color: #666; }
+
+  .testimonial-quote { 
+    line-height: 1.5; 
+    margin-bottom: 15px; 
+    color: #333;
+  }
+
+  .testimonial-stars { color: #d4af37; text-align: right; }
+
+  /* --- FIXED MOBILE RESPONSIVENESS --- */
+  @media (max-width: 768px) {
+    .testimonial-inner { 
+      flex-direction: column; 
+      align-items: center; /* Center image on mobile */
+      text-align: left; 
+    }
+
+    .testimonial-image { width: 100%; }
+
+    .testimonial-image img { 
+      width: 100%; 
+      max-width: 300px; /* Prevents image from becoming too massive */
+      height: auto; 
+      margin: 0 auto 15px auto; 
+    }
+
+    .info-top { 
+      flex-direction: column; 
+      gap: 5px; 
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .testimonial-stars { 
+      text-align: left; 
+      margin-top: 10px; 
+      text-align: center;
+    }
+    .testimonial-quote{
+      text-align: center;
+    }
+
+    .testimonial-header-title {
+      text-align: center;
+    }
+  }
+</style>
+{% schema %}
+{
+  "name": "Testimonial Card List",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial Card",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Card Heading", "default": "Natural Glow Every Day" },
+        { "type": "image_picker", "id": "image", "label": "User Image" },
+        { "type": "text", "id": "author", "label": "Author Name", "default": "Angela M." },
+        { "type": "text", "id": "email", "label": "Email Display", "default": "angela.m@email.com" },
+        { "type": "text", "id": "date", "label": "Date", "default": "February 05, 2026" },
+        { "type": "textarea", "id": "quote", "label": "Testimonial Quote" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonial Card List",
+      "blocks": [
+        { "type": "testimonial" },
+        { "type": "testimonial" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "{{ section.settings.product_name | default: 'Blush n Bloom' }}",
+  "review": [
+    {% for block in section.blocks %}
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "{{ block.settings.author }}"
+      },
+      "reviewBody": "{{ block.settings.quote | strip_html }}"
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}
+</script>

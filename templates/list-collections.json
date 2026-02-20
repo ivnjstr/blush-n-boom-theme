@@ -29,10 +29,34 @@
             "collection": "test",
             "label": ""
           }
+        },
+        "collection_block_QQQLpe": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "face-makeup",
+            "label": ""
+          }
+        },
+        "collection_block_8caz9K": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "eye-makeup",
+            "label": ""
+          }
+        },
+        "collection_block_UhC6F8": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "lip-products",
+            "label": ""
+          }
         }
       },
       "block_order": [
-        "collection_block_UdPfP6"
+        "collection_block_UdPfP6",
+        "collection_block_QQQLpe",
+        "collection_block_8caz9K",
+        "collection_block_UhC6F8"
       ],
       "name": "Custom Collection Grid",
       "settings": {
